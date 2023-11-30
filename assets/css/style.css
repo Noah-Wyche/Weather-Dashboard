@@ -1,11 +1,39 @@
 body {
+    font-family: 'Arial', sans-serif;
     margin: 0;
-    height: 100%;
-    width: 100%;
+    padding: 0;
 }
 
 header {
-    background-color: blue;
+    background-color: #3498db;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+}
+
+main { 
+    margin: 0 auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 2fr; 
+    grid-template-rows: auto auto auto auto auto; 
+    gap: 20px;
+}
+
+form {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 2;
+    margin-bottom: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+#searchForm {
+    float: left;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    font-size: larger;
+
 }
