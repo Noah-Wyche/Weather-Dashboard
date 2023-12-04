@@ -58,11 +58,10 @@ function displayForecast(data) {
     const div = document.createElement('div');
     div.classList.add('forecast-box');
     div.innerHTML = `
-      <p>Date: ${forecastData.dt_txt}</p>
-      <p>Temperature: ${forecastData.main.temp} °C</p>
-      <p>Humidity: ${forecastData.main.humidity}%</p>
-      <p>Wind Speed: ${forecastData.wind.speed} m/s</p>
-      <!-- You can add more information based on the API response -->
+      <p>Date: ${forecast.time.from}</p>
+      <p>Temperature: ${forecast.temperature.value} °C</p>
+      <p>Humidity: ${forecast.humidity.value}%</p>
+      <p>Wind Speed: ${forecast.windSpeed.mps} m/s</p>
     `;
     fragment.appendChild(div);
   }
