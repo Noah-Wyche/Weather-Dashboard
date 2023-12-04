@@ -8,8 +8,8 @@ const searchHistorySection = document.getElementById('searchHistory');
 searchForm.addEventListener('submit', function (e) {
   e.preventDefault();
   const cityName = cityInput.value;
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
-
+  const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`;
+  
   fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
@@ -17,7 +17,7 @@ searchForm.addEventListener('submit', function (e) {
           displayCurrentWeather(data);
 
           // Fetch 5-day forecast
-          return fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`);
+          return fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${apiKey}`);
       })
       .then(response => response.json())
       .then(data => {
@@ -47,23 +47,29 @@ function displayCurrentWeather(data) {
 
 function displayForecast(data) {
   const forecastContainer = document.getElementById('forecast');
-  // Implement this function to update the forecast section
   const forecastList = data.list;
+
+  // Create a document fragment to minimize reflows
+  const fragment = document.createDocumentFragment();
 
   // Display the forecast for the next 5 days
   for (let i = 0; i < 5; i++) {
     const forecastData = forecastList[i];
-    const html = `
-      <div class="forecast-box">
-        <p>Date: ${forecastData.dt_txt}</p>
-        <p>Temperature: ${forecastData.main.temp} °C</p>
-        <p>Humidity: ${forecastData.main.humidity}%</p>
-        <p>Wind Speed: ${forecastData.wind.speed} m/s</p>
-        <!-- You can add more information based on the API response -->
-      </div>
+    const div = document.createElement('div');
+    div.classList.add('forecast-box');
+    div.innerHTML = `
+      <p>Date: ${forecastData.dt_txt}</p>
+      <p>Temperature: ${forecastData.main.temp} °C</p>
+      <p>Humidity: ${forecastData.main.humidity}%</p>
+      <p>Wind Speed: ${forecastData.wind.speed} m/s</p>
+      <!-- You can add more information based on the API response -->
     `;
-    forecastContainer.innerHTML += html;
+    fragment.appendChild(div);
   }
+
+  // Clear existing content and append the fragment
+  forecastContainer.innerHTML = '';
+  forecastContainer.appendChild(fragment);
 }
 
 function updateSearchHistory(cityName) {
