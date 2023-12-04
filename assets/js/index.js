@@ -33,11 +33,37 @@ searchForm.addEventListener('submit', function (e) {
 });
 
 function displayCurrentWeather(data) {
- 
+  const currentWeatherContainer = document.getElementById('currentWeather');
+  // Implement this function to update the current weather section
+  const html = `
+    <h2>${data.name}</h2>
+    <p>Temperature: ${data.main.temp} °C</p>
+    <p>Humidity: ${data.main.humidity}%</p>
+    <p>Wind Speed: ${data.wind.speed} m/s</p>
+    <!-- You can add more information based on the API response -->
+  `;
+  currentWeatherContainer.innerHTML = html;
 }
 
 function displayForecast(data) {
- 
+  const forecastContainer = document.getElementById('forecast');
+  // Implement this function to update the forecast section
+  const forecastList = data.list;
+
+  // Display the forecast for the next 5 days
+  for (let i = 0; i < 5; i++) {
+    const forecastData = forecastList[i];
+    const html = `
+      <div class="forecast-box">
+        <p>Date: ${forecastData.dt_txt}</p>
+        <p>Temperature: ${forecastData.main.temp} °C</p>
+        <p>Humidity: ${forecastData.main.humidity}%</p>
+        <p>Wind Speed: ${forecastData.wind.speed} m/s</p>
+        <!-- You can add more information based on the API response -->
+      </div>
+    `;
+    forecastContainer.innerHTML += html;
+  }
 }
 
 function updateSearchHistory(cityName) {

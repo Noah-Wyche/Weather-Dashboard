@@ -12,12 +12,16 @@
     </header>
     <main>
         <form id="searchForm">
-            <label for="cityInput">Search for a City:</label>
-            <input type="text" id="cityInput" />
-            <button type="submit">Search</button>
+            <label class="formSpacing" for="cityInput">Search for a City:</label>
+            <input class="formSpacing" type="text" id="cityInput" />
+            <button class="formSpacing" type="submit">Search</button>
         </form>
-        <section id="currentWeather"></section>
-        <section id="forecast"></section>
+        <section id="currentWeatherContainer">
+          <div id="currentWeather"></div>
+        </section>
+        <section id="forecastContainer">
+          <div id="forecast"></div>
+        </section>
         <section id="searchHistory"></section>
     </main>
     <script src="./script.js"></script>
