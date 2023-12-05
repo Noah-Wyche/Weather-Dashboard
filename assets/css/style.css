@@ -26,7 +26,7 @@ section {
     margin-bottom: 20px;
 }
 
-#searchForm {
+#search-form {
     grid-column: 1 / span 1;
     grid-row: 1 / span 2;
     display: flex;
@@ -40,21 +40,21 @@ section {
     padding-top: 10px;
 }
 
-#currentWeatherContainer {
+#weather-container {
     grid-column: 2 / span 1;
     grid-row: 1 / span 1;
     border: 1px solid #3498db;
     height: 100%;
 }
 
-#forecastContainer {
+#forecast-container {
     grid-column: 2 / span 1;
     grid-row: 2 / span 1;
     border: 1px solid #3498db;
     height: 100%;
 }
 
-#searchHistory {
+#search-history {
     grid-column: 1 / span 1;
     grid-row: 2 / span 2;
     border: 1px solid #3498db;
