@@ -1,4 +1,8 @@
 const searchForm = document.getElementById('search-form');
+searchForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  fetchAndDisplayWeather();
+});
 const currentWeatherSection = document.getElementById('current-weather');
 const forecastSection = document.getElementById('forecast');
 const searchHistorySection = document.getElementById('search-history');
@@ -6,7 +10,7 @@ const searchHistorySection = document.getElementById('search-history');
 function fetchAndDisplayWeather() {
   const apiKey = '5918618550451b2731810039579e408d';
   const cityInput = document.getElementById('cityInput');
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=${apiKey}`;
+  const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityInput.value}&appid=${apiKey}`;
 
   fetch(apiUrl)
     .then(response => {
