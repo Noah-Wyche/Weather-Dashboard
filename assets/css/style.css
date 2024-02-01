@@ -62,12 +62,25 @@ section {
     flex-direction: row;
 }
 
-#search-history {
+#search-history-container {
     grid-column: 1 / span 1;
     grid-row: 2 / span 2;
     border: 1px solid #3498db;
     height: 500px;
-}
+    display: flex;
+    flex-direction: column;
+  }
+
+  #search-history {
+    display: flex;
+  }
+  
+  #search-history button {
+    margin-bottom: 5px;
+    background-color: #3498db; /* Light gray background color */
+    padding: 5px; /* Add padding for spacing */
+    border: 1px solid #ddd; /* Add border for better visibility */
+  }
 
 .forecast-box {
     border: 1px solid #ddd;
