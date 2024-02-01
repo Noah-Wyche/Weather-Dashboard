@@ -52,6 +52,14 @@ section {
     grid-row: 2 / span 1;
     border: 1px solid #3498db;
     height: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+#forecast {
+    display: flex;
+    flex-direction: row;
 }
 
 #search-history {
@@ -64,4 +72,6 @@ section {
 .forecast-box {
     border: 1px solid #ddd;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
 }
