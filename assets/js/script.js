@@ -63,7 +63,7 @@ function displayWeatherData(data) {
 
     const currentWeatherHtml = `
       <h2>${cityName} - ${formattedDate}</h2>
-      <img src="http://openweathermap.org/img/w/${todayWeatherIcon}.png" alt="Weather Icon">
+      <img src="https://openweathermap.org/img/w/${todayWeatherIcon}.png" alt="Weather Icon">
       <p>Temperature: ${todayTemperatureCelsius.toFixed(2)} °C</p>
       <p>Humidity: ${todayHumidity.toFixed(2)} %</p>
       <p>Wind Speed: ${todayWindSpeedMilesPerHour.toFixed(2)} mph</p>
@@ -92,7 +92,7 @@ function displayWeatherData(data) {
       return `
         <div class="forecast-box">
           <p>${formatDate(new Date(dayGroup[0].dt * 1000))}</p>
-          <img src="http://openweathermap.org/img/w/${weatherIcon}.png" alt="Weather Icon">
+          <img src="https://openweathermap.org/img/w/${weatherIcon}.png" alt="Weather Icon">
           <p> Avg Temp: ${averageTemperatureCelsius.toFixed(2)} °C</p>
           <p> Avg Humidity: ${averageHumidity.toFixed(2)} %</p>
           <p> Wind Speed: ${averageWindSpeedMilesPerHour.toFixed(2)} mph</p>
