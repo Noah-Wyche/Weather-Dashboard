@@ -46,7 +46,9 @@ function displayWeatherData(data) {
   if (todayData.length > 0) {
     const todayTemperatureKelvin = todayData[0].main.temp;
     const todayHumidity = todayData[0].main.humidity;
-    const todayWindSpeed = todayData[0].wind.speed;
+    const todayWindSpeedMetersPerSecond = todayData[0].wind.speed;
+    const todayWindSpeedMilesPerHour = convertMetersPerSecondToMilesPerHour(todayWindSpeedMetersPerSecond);
+
     const todayWeatherIcon = todayData[0].weather[0].icon;
 
     const currentDate = new Date();
@@ -64,7 +66,7 @@ function displayWeatherData(data) {
       <img src="http://openweathermap.org/img/w/${todayWeatherIcon}.png" alt="Weather Icon">
       <p>Temperature: ${todayTemperatureCelsius.toFixed(2)} °C</p>
       <p>Humidity: ${todayHumidity.toFixed(2)} %</p>
-      <p>Wind Speed: ${todayWindSpeed.toFixed(2)} m/s</p>
+      <p>Wind Speed: ${todayWindSpeedMilesPerHour.toFixed(2)} mph</p>
     `;
 
     currentWeatherContainer.innerHTML = currentWeatherHtml;
@@ -79,10 +81,12 @@ function displayWeatherData(data) {
     .map(dayGroup => {
       const averageTemperatureKelvin = calculateAverage(dayGroup.map(entry => entry.main.temp));
       const averageHumidity = calculateAverage(dayGroup.map(entry => entry.main.humidity));
-      const averageWindSpeed = calculateAverage(dayGroup.map(entry => entry.wind.speed));
+      const averageWindSpeedMetersPerSecond = calculateAverage(dayGroup.map(entry => entry.wind.speed));
       const weatherIcon = dayGroup[0].weather[0].icon;
 
       const averageTemperatureCelsius = convertKelvinToCelsius(averageTemperatureKelvin);
+      const averageWindSpeedMilesPerHour = convertMetersPerSecondToMilesPerHour(averageWindSpeedMetersPerSecond);
+
 
 
       return `
@@ -91,7 +95,7 @@ function displayWeatherData(data) {
           <img src="http://openweathermap.org/img/w/${weatherIcon}.png" alt="Weather Icon">
           <p> Avg Temp: ${averageTemperatureCelsius.toFixed(2)} °C</p>
           <p> Avg Humidity: ${averageHumidity.toFixed(2)} %</p>
-          <p> Wind Speed: ${averageWindSpeed.toFixed(2)} m/s</p>
+          <p> Wind Speed: ${averageWindSpeedMilesPerHour.toFixed(2)} mph</p>
         </div>
       `;
     })
@@ -136,6 +140,12 @@ function searchHistoryClicked(city) {
 // Function to convert Kelvin to Celsius
 function convertKelvinToCelsius(kelvin) {
   return kelvin - 273.15;
+}
+
+// Function to convert meters per second to miles per hour
+function convertMetersPerSecondToMilesPerHour(metersPerSecond) {
+  const conversionFactor = 2.23694;
+  return metersPerSecond * conversionFactor;
 }
 
 // Function to group data by day
